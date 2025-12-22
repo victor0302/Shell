@@ -2,6 +2,7 @@ import sys
 
 
 def main():
+    builtin = {"echo","exit","type"}
     while True:
         sys.stdout.write("$ ")
         sys.stdout.flush()
@@ -9,7 +10,12 @@ def main():
         command = input().strip()
         if command == "exit":
             sys.exit(0)
-        
+        elif command.startswith("type"):
+            message = command [5:]
+            if message in builtin:
+                print(f"{message} is a shell builtin")
+            else:
+                print(f"{message}: not found")
         elif command.startswith("echo "):
             message = command[5:]
             print(message)
