@@ -5,8 +5,12 @@ def main():
     while True:
         sys.stdout.write("$ ")
         
-        command = input()
-        print(f"{command}: command not found")
+        command = input().strip()
+        if command == "exit 0":
+            sys.exit(0)
+        
+        sys.stdout.write(f"{command}: command not found\n")
+
 
 
 if __name__ == "__main__":
