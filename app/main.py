@@ -29,12 +29,15 @@ def main():
             print(os.getcwd())
 
         elif command.startswith("cd "):
-            absolute_path = command[3:]
-
+            path = command[3:].strip()
+        
+            if path == "~":
+                path = os.environ.get("HOME")
+            
             try:
-                os.chdir(absolute_path)
+                os.chdir(path)
             except FileNotFoundError:
-                print(f"cd: {absolute_path}: No such file or directory")
+                print(f"cd: {path}: No such file or directory")
 
         elif command.startswith("type"):
             message = command[5:]
