@@ -16,7 +16,7 @@ def get_path(cmd):
     return None
 
 def main():
-    builtin = {"echo", "exit", "type", "pwd"}
+    builtin = {"echo", "exit", "type", "pwd", "cd"}
     while True:
         sys.stdout.write("$ ")
         sys.stdout.flush()
@@ -27,6 +27,14 @@ def main():
 
         elif command == "pwd":
             print(os.getcwd())
+
+        elif command.startswith("cd "):
+            absolute_path = command[3:]
+
+            try:
+                os.chdir(absolute_path)
+            except FileNotFoundError:
+                print(f"cd: {absolute_path}: No such file or directory")
 
         elif command.startswith("type"):
             message = command[5:]
