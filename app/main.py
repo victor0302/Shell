@@ -16,7 +16,7 @@ def get_path(cmd):
     return None
 
 def main():
-    builtin = {"echo", "exit", "type"}
+    builtin = {"echo", "exit", "type", "pwd"}
     while True:
         sys.stdout.write("$ ")
         sys.stdout.flush()
@@ -24,6 +24,9 @@ def main():
         command = input().strip()
         if command == "exit":
             sys.exit(0)
+
+        elif command == "pwd":
+            print(os.getcwd())
 
         elif command.startswith("type"):
             message = command[5:]
